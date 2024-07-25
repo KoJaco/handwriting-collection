@@ -89,7 +89,7 @@ document.getElementById("save-button").addEventListener("click", saveCanvas);
 document.getElementById("reset-button").addEventListener("click", resetCanvas);
 
 function saveCanvas() {
-    const phrase = "example phrase"; // Replace with actual phrase as needed
+    const phrase = "chicken burger";
     const data = {
         phrase: phrase,
         strokes: strokes.map((stroke) => ({

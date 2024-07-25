@@ -20,7 +20,7 @@ type Stroke struct {
 	Points    []Point   `json:"points"`
 	Pressures []float64 `json:"pressures"`
 	Angles    []float64 `json:"angles"`
-	Timestamp string    `json:"timestamp"` // this is in ISO format...
+	Timestamp string    `json:"timestamp"` // this is in ISO format... is speed a concern? Date.now() would be better for speed/storage
 }
 
 type HandwritingData struct {
