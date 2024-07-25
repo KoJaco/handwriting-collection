@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Handwriting Authentication</title>
-        <link href="/src/static/css/tailwind.css" rel="stylesheet" />
+        <link href="/static/css/tailwind.css" rel="stylesheet" />
         <style>
             canvas {
                 border: 1px solid black;
@@ -12,7 +12,7 @@
         </style>
     </head>
     <body class="bg-gray-100 flex items-center justify-center h-screen">
-        <div class="bg-white p-8 rounded shadow w-full max-w-lg">
+        <div class="bg-white p-[25px] rounded shadow w-full max-w-[550px]">
             <div class="space-y-4 mb-4">
                 <h1 class="text-2xl font-bold">Handwriting Data Collection</h1>
                 <p class="">Please copy the phrase below as best as you can.</p>
@@ -22,20 +22,20 @@
                 id="signature-canvas"
                 width="500"
                 height="200"
-                class="border mb-4 w-full"
+                class="border mb-4"
             ></canvas>
-            <div class="flex space-x-4">
-                <button
-                    id="save-button"
-                    class="bg-blue-500 text-white px-4 py-2 rounded"
-                >
-                    Save
-                </button>
+            <div class="flex gap-x-10 w-full">
                 <button
                     id="reset-button"
-                    class="bg-red-500 text-white px-4 py-2 rounded"
+                    class="bg-transparent border border-gray-500 text-gray-900 px-4 py-2 rounded"
                 >
                     Reset
+                </button>
+                <button
+                    id="save-button"
+                    class="bg-blue-500 text-white px-4 py-2 rounded flex ml-auto"
+                >
+                    Download Data
                 </button>
             </div>
         </div>

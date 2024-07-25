@@ -13,16 +13,14 @@ import (
 type Point struct {
 	X         float64 `json:"x"`
 	Y         float64 `json:"y"`
-	Timestamp int64   `json:"timestamp"`
+	Timestamp string  `json:"timestamp"`
 }
 
 type Stroke struct {
-	Points        []Point              `json:"points"`
-	Pressures     []float64            `json:"pressures"`
-	Angles        []map[string]float64 `json:"angles"`
-	Velocities    []float64            `json:"velocities"`
-	Accelerations []float64            `json:"accelerations"`
-	Timestamp     int64                `json:"timestamp"`
+	Points    []Point   `json:"points"`
+	Pressures []float64 `json:"pressures"`
+	Angles    []float64 `json:"angles"`
+	Timestamp string    `json:"timestamp"` // this is in ISO format...
 }
 
 type HandwritingData struct {
@@ -55,7 +53,7 @@ func SaveData(w http.ResponseWriter, r *http.Request) {
 	defer writer.Flush()
 
 	writer.Write([]string{"Phrase", data.Phrase})
-	writer.Write([]string{"Stroke", "Point Index", "X", "Y", "Timestamp", "Pressure", "TiltX", "TiltY", "Velocity", "Acceleration"})
+	writer.Write([]string{"Stroke", "Point Index", "X", "Y", "Timestamp", "Pressure", "Angle"})
 
 	for strokeIndex, stroke := range data.Strokes {
 		for pointIndex, point := range stroke.Points {
@@ -64,12 +62,9 @@ func SaveData(w http.ResponseWriter, r *http.Request) {
 				strconv.Itoa(pointIndex + 1),
 				fmt.Sprintf("%f", point.X),
 				fmt.Sprintf("%f", point.Y),
-				strconv.FormatInt(point.Timestamp, 10),
+				point.Timestamp,
 				fmt.Sprintf("%f", stroke.Pressures[pointIndex]),
-				fmt.Sprintf("%f", stroke.Angles[pointIndex]["tiltX"]),
-				fmt.Sprintf("%f", stroke.Angles[pointIndex]["tiltY"]),
-				fmt.Sprintf("%f", stroke.Velocities[pointIndex]),
-				fmt.Sprintf("%f", stroke.Accelerations[pointIndex]),
+				fmt.Sprintf("%f", stroke.Angles[pointIndex]),
 			}
 			writer.Write(record)
 		}
